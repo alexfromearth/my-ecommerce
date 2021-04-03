@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonColor } from '../Button';
+import { ButtonColor } from './index';
 
 export enum ArrowDirection {
   LEFT,
@@ -21,7 +21,7 @@ const getArrowColor = (color: ButtonColor) => {
   }
 };
 
-const Arrow: React.FunctionComponent<IProps> = ({
+const ButtonArrow: React.FunctionComponent<IProps> = ({
   direction,
   color = ButtonColor.DEFAULT,
   hover,
@@ -61,4 +61,4 @@ const Arrow: React.FunctionComponent<IProps> = ({
   );
 };
 
-export default Arrow;
+export default ButtonArrow;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Arrow, { ArrowDirection } from '../Icon/Arrow';
 import { isNonNullable } from '../../../helpers';
 
 import { ButtonSize, StyledButton } from './styled';
+import ButtonArrow, { ArrowDirection } from './Arrow';
 
 interface IProps {
   size?: ButtonSize;
@@ -31,19 +31,26 @@ const Button: React.FunctionComponent<IProps> = ({
     setHoveredButton(false);
   };
 
-  const renderWithArrows = (arrowDirection: ArrowDirection) => {
-    return arrowDirection === ArrowDirection.LEFT ? (
+  const renderWithArrows = (arrowDirection: ArrowDirection) =>
+    arrowDirection === ArrowDirection.LEFT ? (
       <>
-        <Arrow direction={arrowDirection} color={color} hover={hoveredButton} />
+        <ButtonArrow
+          direction={arrowDirection}
+          color={color}
+          hover={hoveredButton}
+        />
         {children}
       </>
     ) : (
       <>
         {children}
-        <Arrow direction={arrowDirection} color={color} hover={hoveredButton} />
+        <ButtonArrow
+          direction={arrowDirection}
+          color={color}
+          hover={hoveredButton}
+        />
       </>
     );
-  };
 
   return (
     <StyledButton
