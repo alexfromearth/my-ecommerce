@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { isNonNullable } from '../../../helpers';
 
 import { ButtonSize, StyledButton } from './styled';
-import ButtonArrow, { ArrowDirection } from './Arrow';
+import ButtonArrow, { ArrowDirection } from './ButtonArrow';
 
 interface IProps {
   size?: ButtonSize;
