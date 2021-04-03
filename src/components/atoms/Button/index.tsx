@@ -1,42 +1,60 @@
-import React from 'react'
-import { Button } from './styled'
-import Arrow, { ArrowDirection } from '../Icon/Arrow'
+import React, { useState } from 'react';
+import Arrow, { ArrowDirection } from '../Icon/Arrow';
+import { isNonNullable } from '../../../helpers';
 
-export enum ButtonSize {
-  S,
-  L,
-  XL,
-}
+import { ButtonSize, StyledButton } from './styled';
 
 interface IProps {
-  size?: ButtonSize
-  arrow?: ArrowDirection
+  size?: ButtonSize;
+  arrow?: ArrowDirection;
+  color?: ButtonColor;
 }
 
-const MainButton: React.FunctionComponent<IProps> = ({
+export enum ButtonColor {
+  DEFAULT,
+  SECONDARY,
+}
+
+const Button: React.FunctionComponent<IProps> = ({
   children,
   size,
   arrow,
+  color,
 }) => {
+  const [hoveredButton, setHoveredButton] = useState(false);
+
+  const handleHover = () => {
+    setHoveredButton(true);
+  };
+
+  const handleBlur = () => {
+    setHoveredButton(false);
+  };
+
   const renderWithArrows = (arrowDirection: ArrowDirection) => {
     return arrowDirection === ArrowDirection.LEFT ? (
       <>
-        <Arrow direction={arrowDirection} />
+        <Arrow direction={arrowDirection} color={color} hover={hoveredButton} />
         {children}
       </>
     ) : (
       <>
         {children}
-        <Arrow direction={arrowDirection} />
+        <Arrow direction={arrowDirection} color={color} hover={hoveredButton} />
       </>
-    )
-  }
+    );
+  };
 
   return (
-    <Button size={size}>
-      {arrow ? renderWithArrows(arrow) : { children }}
-    </Button>
-  )
-}
+    <StyledButton
+      size={size}
+      color={color}
+      onMouseOver={handleHover}
+      onMouseOut={handleBlur}
+    >
+      {isNonNullable(arrow) ? renderWithArrows(arrow) : children}
+    </StyledButton>
+  );
+};
 
-export default MainButton
+export default Button;
