@@ -18,10 +18,17 @@ const getButtonColor = (color: ButtonColor) => {
       return css`
         border: 2px solid #92c064;
         background-color: #ffffff;
+
         &:hover {
           background-color: #6a983c;
           color: #ffffff;
         }
+      `;
+    case ButtonColor.PRIMARY:
+      return css`
+        background-color: #6a983c;
+        border: 2px solid #92c064;
+        color: #ffffff;
       `;
     case ButtonColor.SECONDARY:
       return css`

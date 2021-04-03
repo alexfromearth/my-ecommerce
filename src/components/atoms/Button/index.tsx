@@ -12,6 +12,7 @@ interface IProps {
 
 export enum ButtonColor {
   DEFAULT,
+  PRIMARY,
   SECONDARY,
 }
 

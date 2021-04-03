@@ -16,6 +16,8 @@ const getArrowColor = (color: ButtonColor) => {
   switch (color) {
     case ButtonColor.DEFAULT:
       return '#6A983C';
+    case ButtonColor.PRIMARY:
+      return '#FFFFFF';
     case ButtonColor.SECONDARY:
       return '#000000';
   }
