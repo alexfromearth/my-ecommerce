@@ -9,7 +9,7 @@ export enum ButtonSize {
 
 interface IStyledButton {
   size: ButtonSize;
-  color: ButtonColor;
+  color?: ButtonColor;
 }
 
 const getButtonColor = (color: ButtonColor) => {
@@ -55,11 +55,12 @@ const getButtonPadding = (size: ButtonSize) => {
   }
 };
 
-export const StyledButton = styled.button.attrs(
-  ({ color = ButtonColor.DEFAULT }) => ({
+export const StyledButton = styled.button.attrs<IStyledButton>(
+  ({ color = ButtonColor.DEFAULT, size = ButtonSize.S }) => ({
     color,
+    size,
   })
-)<IStyledButton | any>`
+)<IStyledButton>`
   display: flex;
   align-items: center;
   border-radius: 12px;
