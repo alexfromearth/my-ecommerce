@@ -1,14 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import MainButton, { ButtonSize } from './components/atoms/Button'
-import { ArrowDirection } from './components/atoms/Icon/Arrow'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const Root = () => {
-  return (
-    <MainButton size={ButtonSize.XL} arrow={ArrowDirection.LEFT}>
-      Rootasdas
-    </MainButton>
-  )
-}
+  return <div />;
+};
 
-export default ReactDOM.render(<Root />, document.querySelector('#root'))
+export default ReactDOM.render(<Root />, document.querySelector('#root'));
