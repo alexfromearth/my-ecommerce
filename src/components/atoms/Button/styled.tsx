@@ -9,7 +9,7 @@ export enum ButtonSize {
 
 interface IStyledButton {
   size: ButtonSize;
-  color?: ButtonColor;
+  color: ButtonColor;
 }
 
 const getButtonColor = (color: ButtonColor) => {
@@ -60,7 +60,7 @@ export const StyledButton = styled.button.attrs<IStyledButton>(
     color,
     size,
   })
-)<IStyledButton>`
+)<any>`
   display: flex;
   align-items: center;
   border-radius: 12px;
