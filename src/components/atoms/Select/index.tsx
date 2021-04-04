@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import SelectOption, { IOption } from './SelectOption';
-import { isNonNullable, isNullable } from '../../../helpers';
+import { isNonNullable } from '../../../helpers';
 import SelectArrow from '../Icon/SelectArrow';
 
 import {
@@ -9,16 +9,22 @@ import {
   SelectDropdown,
   StyledSelect,
 } from './styled';
+import SelectTag from './SelectTag';
 
 interface IProps {
   options: IOption[];
   placeholder?: string;
+  multy?: boolean;
 }
 
-const Select: React.FunctionComponent<IProps> = ({ options, placeholder }) => {
+const Select: React.FunctionComponent<IProps> = ({
+  options,
+  placeholder,
+  multy = false,
+}) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<IOption>(
-    isNullable(placeholder) && options.length ? options[0] : null
+  const [selectedOptions, setSelectedOptions] = useState<IOption | IOption[]>(
+    multy ? [] : null
   );
   const selectRef = useRef<HTMLDivElement>();
 
@@ -28,28 +34,77 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder }) => {
     }
   };
 
+  const handleSelectedTagDelete = useCallback(
+    (option: IOption) => {
+      if (multy) {
+        setSelectedOptions((prevSelectedOptions: IOption[]) =>
+          prevSelectedOptions.filter(
+            ({ label, value }) =>
+              label !== option.label && value !== option.value
+          )
+        );
+      }
+    },
+    [selectedOptions, setSelectedOptions]
+  );
+
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  const handleOptionSelect = useCallback((option: IOption) => {
-    setSelectedOption(option);
-    setShowDropdown(false);
-  }, []);
+  const handleOptionSelect = useCallback(
+    (option: IOption) => {
+      if (multy && Array.isArray(selectedOptions)) {
+        const isAlreadyInOptions = selectedOptions.some(
+          ({ label, value }) => option.label === label && option.value === value
+        );
+        if (!isAlreadyInOptions) {
+          setSelectedOptions((prevSelectedOptions: IOption[]) => [
+            ...prevSelectedOptions,
+            option,
+          ]);
+        }
+      } else {
+        setSelectedOptions(option);
+      }
+      setShowDropdown(false);
+    },
+    [selectedOptions, setShowDropdown, setSelectedOptions, multy]
+  );
 
   const toggleDropdownMenu = () => {
     setShowDropdown((prev) => !prev);
   };
 
+  const renderSelectOptions = useCallback(() => {
+    {
+      isNonNullable(selectedOptions) && !Array.isArray(selectedOptions) ? (
+        selectedOptions.label
+      ) : (
+        <Placeholder>{placeholder}</Placeholder>
+      );
+    }
+    if (isNonNullable(selectedOptions)) {
+      if (Array.isArray(selectedOptions)) {
+        return selectedOptions.map((option) => (
+          <SelectTag
+            key={`${option.value}-${option.label}`}
+            option={option}
+            handleDelete={handleSelectedTagDelete}
+          />
+        ));
+      }
+      return selectedOptions.label;
+    } else {
+      return <Placeholder>{placeholder}</Placeholder>;
+    }
+  }, [selectedOptions, placeholder, handleSelectedTagDelete]);
+
   return (
     <div ref={selectRef}>
       <StyledSelect onClick={toggleDropdownMenu}>
-        {isNonNullable(selectedOption) ? (
-          selectedOption.label
-        ) : (
-          <Placeholder>{placeholder}</Placeholder>
-        )}
+        {renderSelectOptions()}
         <SelectArrowWrapper>
           <SelectArrow />
         </SelectArrowWrapper>
