@@ -50,3 +50,26 @@ export const StyledSelectOption = styled.div`
     border-bottom-left-radius: 12px;
   }
 `;
+
+export const StyledSelectTagWrapper = styled.div`
+  display: inline-block;
+`;
+
+export const StyledSelectTag = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  background: #f4f8ec;
+  border-radius: 12px;
+  color: #6a983c;
+  padding: 2px 10px;
+`;
+
+export const CloseIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  cursor: pointer;
+`;
