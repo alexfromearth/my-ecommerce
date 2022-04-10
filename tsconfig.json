@@ -1,16 +1,52 @@
 {
+  "buildOnSave": false,
+  "compileOnSave": false,
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": false,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "incremental": false,
+    "isolatedModules": true,
     "jsx": "react-jsx",
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "outDir": "./build/",
-    "preserveConstEnums": true,
+    "lib": ["dom", "es2018", "es5", "es6", "es7", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "*": ["src/*"],
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.css$"
+        }
+      }
+    ],
+    "pretty": true,
     "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "target": "es5",
-    "esModuleInterop": true
+    "strict": false,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": false,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "target": "es5"
   },
-  "include": [
-    "src/"
-  ]
+  "include": ["src/"]
 }
