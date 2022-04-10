@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import SelectOption, { IOption } from './SelectOption';
 import { isNonNullable } from '../../../helpers';
 import SelectArrow from '../Icon/SelectArrow';
+import SelectTag from './SelectTag';
 
 import {
   Placeholder,
@@ -9,7 +10,6 @@ import {
   SelectDropdown,
   StyledSelect,
 } from './styled';
-import SelectTag from './SelectTag';
 
 interface IProps {
   options: IOption[];
