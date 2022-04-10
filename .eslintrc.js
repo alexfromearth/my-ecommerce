@@ -3,7 +3,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  ignorePatterns: ['.eslintrc.js', 'webpack.config.js'],
+  ignorePatterns: ['.eslintrc.js', 'webpack'],
   plugins: ['@typescript-eslint'],
   extends: [
     'airbnb',
