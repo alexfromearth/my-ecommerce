@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import SelectOption, { IOption } from './SelectOption';
+
 import { isNonNullable } from '../../../helpers';
 import SelectArrow from '../Icon/SelectArrow';
+import SelectOption, { IOption } from './SelectOption';
 import SelectTag from './SelectTag';
-
 import {
   Placeholder,
   SelectArrowWrapper,
@@ -23,10 +23,10 @@ const Select: React.FunctionComponent<IProps> = ({
   multy = false,
 }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState<IOption | IOption[]>(
+  const [selectedOptions, setSelectedOptions] = useState<IOption | IOption[] | null>(
     multy ? [] : null
   );
-  const selectRef = useRef<HTMLDivElement>();
+  const selectRef = useRef<HTMLDivElement>(null);
 
   const handleOutsideClick = (e: MouseEvent) => {
     if (selectRef.current && !selectRef.current.contains(e.target as any)) {
@@ -78,13 +78,6 @@ const Select: React.FunctionComponent<IProps> = ({
   };
 
   const renderSelectOptions = useCallback(() => {
-    {
-      isNonNullable(selectedOptions) && !Array.isArray(selectedOptions) ? (
-        selectedOptions.label
-      ) : (
-        <Placeholder>{placeholder}</Placeholder>
-      );
-    }
     if (isNonNullable(selectedOptions)) {
       if (Array.isArray(selectedOptions)) {
         return selectedOptions.map((option) => (
@@ -96,9 +89,9 @@ const Select: React.FunctionComponent<IProps> = ({
         ));
       }
       return selectedOptions.label;
-    } else {
-      return <Placeholder>{placeholder}</Placeholder>;
     }
+
+    return <Placeholder>{placeholder}</Placeholder>;
   }, [selectedOptions, placeholder, handleSelectedTagDelete]);
 
   return (

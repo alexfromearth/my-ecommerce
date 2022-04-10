@@ -1,5 +1,4 @@
-const SelectArrow: React.FunctionComponent = () => {
-  return (
+const SelectArrow: React.FunctionComponent = () => (
     <svg
       width="16"
       height="16"
@@ -17,6 +16,5 @@ const SelectArrow: React.FunctionComponent = () => {
       />
     </svg>
   );
-};
 
 export default SelectArrow;
