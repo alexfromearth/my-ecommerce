@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
-import { StyledInput, StyledTextFieldWrapper } from './styled';
 import MailIcon from '../Icon/Mail';
+import { StyledInput, StyledTextFieldWrapper } from './styled';
 
 interface IOwnProps {
   type?: 'password' | 'text';
@@ -14,7 +14,7 @@ interface IOwnProps {
 type IProps = IOwnProps & React.InputHTMLAttributes<HTMLInputElement>;
 
 const TextField: React.FunctionComponent<IProps> = ({ icon, ...props }) => {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputFocus = () => {
     if (!inputRef.current) return;

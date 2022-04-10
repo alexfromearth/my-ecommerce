@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { ButtonColor } from './index';
 
 export enum ButtonSize {

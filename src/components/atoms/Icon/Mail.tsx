@@ -1,5 +1,4 @@
-const MailIcon: React.FunctionComponent = () => {
-  return (
+const MailIcon: React.FunctionComponent = () => (
     <svg
       width="16"
       height="16"
@@ -23,6 +22,5 @@ const MailIcon: React.FunctionComponent = () => {
       />
     </svg>
   );
-};
 
 export default MailIcon;

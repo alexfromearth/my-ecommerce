@@ -1,6 +1,5 @@
-import { IOption } from './SelectOption';
 import CloseIcon from '../Icon/Close';
-
+import { IOption } from './SelectOption';
 import {
   CloseIconWrapper,
   StyledSelectTag,
@@ -15,8 +14,7 @@ interface IProps {
 const SelectTag: React.FunctionComponent<IProps> = ({
   option,
   handleDelete,
-}) => {
-  return (
+}) => (
     <StyledSelectTagWrapper>
       <StyledSelectTag>
         {option.label}
@@ -28,6 +26,5 @@ const SelectTag: React.FunctionComponent<IProps> = ({
       </StyledSelectTag>
     </StyledSelectTagWrapper>
   );
-};
 
 export default SelectTag;

@@ -19,6 +19,8 @@ const getArrowColor = (color: ButtonColor): string => {
       return '#FFFFFF';
     case ButtonColor.SECONDARY:
       return '#000000';
+    default:
+      return '#6A983C';
   }
 };
 
@@ -30,7 +32,6 @@ const ButtonArrow: React.FunctionComponent<IProps> = ({
   const newColor = getArrowColor(color);
 
   return (
-    <>
       <svg
         width="22"
         height="20"
@@ -38,8 +39,8 @@ const ButtonArrow: React.FunctionComponent<IProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          marginRight: direction === ArrowDirection.LEFT && '8px',
-          marginLeft: direction === ArrowDirection.RIGHT && '8px',
+          marginRight: direction === ArrowDirection.LEFT ? '8px' : undefined,
+          marginLeft: direction === ArrowDirection.RIGHT ? '8px' : undefined,
         }}
       >
         {direction === ArrowDirection.LEFT && (
@@ -59,7 +60,6 @@ const ButtonArrow: React.FunctionComponent<IProps> = ({
           />
         )}
       </svg>
-    </>
   );
 };
 

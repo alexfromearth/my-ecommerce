@@ -1,5 +1,4 @@
-const CloseIcon: React.FunctionComponent = () => {
-  return (
+const CloseIcon: React.FunctionComponent = () => (
     <svg
       width="12"
       height="12"
@@ -11,6 +10,5 @@ const CloseIcon: React.FunctionComponent = () => {
       <path d="M9.17995 2.82007L2.81995 9.18007" stroke="#C8DEB3" />
     </svg>
   );
-};
 
 export default CloseIcon;
