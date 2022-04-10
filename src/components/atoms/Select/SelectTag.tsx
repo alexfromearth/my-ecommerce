@@ -1,10 +1,11 @@
 import { IOption } from './SelectOption';
+import CloseIcon from '../Icon/Close';
+
 import {
   CloseIconWrapper,
   StyledSelectTag,
   StyledSelectTagWrapper,
 } from './styled';
-import CloseIcon from '../Icon/Close';
 
 interface IProps {
   option: IOption;

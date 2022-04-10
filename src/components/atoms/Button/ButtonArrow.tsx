@@ -11,7 +11,7 @@ interface IProps {
   hover?: boolean;
 }
 
-const getArrowColor = (color: ButtonColor) => {
+const getArrowColor = (color: ButtonColor): string => {
   switch (color) {
     case ButtonColor.DEFAULT:
       return '#6A983C';
@@ -28,6 +28,7 @@ const ButtonArrow: React.FunctionComponent<IProps> = ({
   hover,
 }) => {
   const newColor = getArrowColor(color);
+
   return (
     <>
       <svg
