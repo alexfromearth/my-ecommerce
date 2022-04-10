@@ -1,4 +1,3 @@
-import React from 'react';
 import { IOption } from './SelectOption';
 import {
   CloseIconWrapper,
