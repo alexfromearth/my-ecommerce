@@ -10,13 +10,10 @@ interface IProps {
   handleOptionSelect?(option: IOption): void;
 }
 
-const SelectOption: React.FunctionComponent<IProps> = ({
-  option,
-  handleOptionSelect,
-}) => (
-    <StyledSelectOption onClick={() => handleOptionSelect?.(option)}>
-      {option.label}
-    </StyledSelectOption>
-  );
+const SelectOption: React.FunctionComponent<IProps> = ({ option, handleOptionSelect }) => (
+  <StyledSelectOption onClick={() => handleOptionSelect?.(option)}>
+    {option.label}
+  </StyledSelectOption>
+);
 
 export default SelectOption;

@@ -16,12 +16,7 @@ export enum ButtonColor {
   SECONDARY,
 }
 
-const Button: React.FunctionComponent<IProps> = ({
-  children,
-  size,
-  arrow,
-  color,
-}) => {
+const Button: React.FunctionComponent<IProps> = ({ children, size, arrow, color }) => {
   const [hoveredButton, setHoveredButton] = useState(false);
 
   const handleHover = () => {
@@ -35,31 +30,18 @@ const Button: React.FunctionComponent<IProps> = ({
   const renderWithArrows = (arrowDirection: ArrowDirection) =>
     arrowDirection === ArrowDirection.LEFT ? (
       <>
-        <ButtonArrow
-          direction={arrowDirection}
-          color={color}
-          hover={hoveredButton}
-        />
+        <ButtonArrow direction={arrowDirection} color={color} hover={hoveredButton} />
         {children}
       </>
     ) : (
       <>
         {children}
-        <ButtonArrow
-          direction={arrowDirection}
-          color={color}
-          hover={hoveredButton}
-        />
+        <ButtonArrow direction={arrowDirection} color={color} hover={hoveredButton} />
       </>
     );
 
   return (
-    <StyledButton
-      size={size}
-      color={color}
-      onMouseOver={handleHover}
-      onMouseOut={handleBlur}
-    >
+    <StyledButton size={size} color={color} onMouseOver={handleHover} onMouseOut={handleBlur}>
       {isNonNullable(arrow) ? renderWithArrows(arrow) : children}
     </StyledButton>
   );
