@@ -4,12 +4,7 @@ import { isNonNullable } from '../../../helpers';
 import SelectArrow from '../Icon/SelectArrow';
 import SelectOption, { IOption } from './SelectOption';
 import SelectTag from './SelectTag';
-import {
-  Placeholder,
-  SelectArrowWrapper,
-  SelectDropdown,
-  StyledSelect,
-} from './styled';
+import { Placeholder, SelectArrowWrapper, SelectDropdown, StyledSelect } from './styled';
 
 interface IProps {
   options: IOption[];
@@ -17,11 +12,7 @@ interface IProps {
   multy?: boolean;
 }
 
-const Select: React.FunctionComponent<IProps> = ({
-  options,
-  placeholder,
-  multy = false,
-}) => {
+const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy = false }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<IOption | IOption[] | null>(
     multy ? [] : null
@@ -39,8 +30,7 @@ const Select: React.FunctionComponent<IProps> = ({
       if (multy) {
         setSelectedOptions((prevSelectedOptions: IOption[]) =>
           prevSelectedOptions.filter(
-            ({ label, value }) =>
-              label !== option.label && value !== option.value
+            ({ label, value }) => label !== option.label && value !== option.value
           )
         );
       }
@@ -60,10 +50,7 @@ const Select: React.FunctionComponent<IProps> = ({
           ({ label, value }) => option.label === label && option.value === value
         );
         if (!isAlreadyInOptions) {
-          setSelectedOptions((prevSelectedOptions: IOption[]) => [
-            ...prevSelectedOptions,
-            option,
-          ]);
+          setSelectedOptions((prevSelectedOptions: IOption[]) => [...prevSelectedOptions, option]);
         }
       } else {
         setSelectedOptions(option);
@@ -74,13 +61,13 @@ const Select: React.FunctionComponent<IProps> = ({
   );
 
   const toggleDropdownMenu = () => {
-    setShowDropdown((prev) => !prev);
+    setShowDropdown(prev => !prev);
   };
 
   const renderSelectOptions = useCallback(() => {
     if (isNonNullable(selectedOptions)) {
       if (Array.isArray(selectedOptions)) {
-        return selectedOptions.map((option) => (
+        return selectedOptions.map(option => (
           <SelectTag
             key={`${option.value}-${option.label}`}
             option={option}
@@ -104,7 +91,7 @@ const Select: React.FunctionComponent<IProps> = ({
       </StyledSelect>
       {showDropdown && (
         <SelectDropdown>
-          {options.map((option) => (
+          {options.map(option => (
             <SelectOption
               key={`${option.label}-${option.value}`}
               option={option}
