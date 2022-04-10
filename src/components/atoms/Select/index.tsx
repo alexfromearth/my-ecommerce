@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import SelectOption, { IOption } from './SelectOption';
 import { isNonNullable } from '../../../helpers';
 import SelectArrow from '../Icon/SelectArrow';

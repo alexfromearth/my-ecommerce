@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledSelectOption } from './styled';
 
 export interface IOption {

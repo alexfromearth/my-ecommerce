@@ -1,4 +1,3 @@
-import React from 'react';
 import { ButtonColor } from './index';
 
 export enum ArrowDirection {

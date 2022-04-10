@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { StyledInput, StyledTextFieldWrapper } from './styled';
 import MailIcon from '../Icon/Mail';
 
