@@ -1,4 +1,9 @@
 module.exports = {
+  env: {
+    node: true,
+    browser: true,
+  },
+  ignorePatterns: ['.eslintrc.js', 'webpack.config.js'],
   plugins: ['@typescript-eslint'],
   extends: [
     'airbnb',
@@ -16,7 +21,7 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 2020,
-    project: [`${__dirname}/tsconfig.json`],
+    project: 'tsconfig.json',
     sourceType: 'module',
     tsconfigRootDir: __dirname,
   },
