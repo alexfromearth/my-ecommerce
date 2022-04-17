@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const devConfig = require('./webpack-development.config');
+const devConfig = require('./webpack-dev.config');
 const { HMR, DEV_SERVER_PORT } = require('./environment');
 
 const compiler = webpack(devConfig);
@@ -21,9 +21,7 @@ app.use(
 
 if (HMR) {
   app.use(
-    webpackHotMiddleware(compiler, {
-      log: false,
-    })
+    webpackHotMiddleware(compiler)
   );
 }
 
