@@ -6,6 +6,8 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./common-config');
 const { HMR } = require('./environment');
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 module.exports = merge(commonConfig, {
   devtool: 'eval-source-map',
   mode: 'development',
@@ -39,7 +41,7 @@ module.exports = merge(commonConfig, {
   },
   plugins: [
     HMR && new webpack.HotModuleReplacementPlugin(),
-    HMR &&
+    HMR && isDevelopment &&
       new ReactRefreshPlugin({
         overlay: {
           sockIntegration: 'whm',

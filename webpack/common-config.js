@@ -4,13 +4,14 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 const ReactRefreshTypeScript = require('react-refresh-typescript');
 
-const ROOT_PATH = path.resolve(__dirname, '..');
+const { HMR } = require('./environment');
 
-const { HMR } = require('environment');
+const ROOT_PATH = path.resolve(__dirname, '..');
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   context: ROOT_PATH,
-  entry: { index: path.resolve(__dirname, 'src', 'index.tsx') },
+  entry: { app: `${ROOT_PATH}/src/index.tsx` },
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -36,11 +37,11 @@ module.exports = {
             options: {
               ...(HMR && {
                 getCustomTransformers: () => ({
-                  before: [ReactRefreshTypeScript()],
+                  before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
                 }),
               }),
               happyPackMode: true,
-              transpileOnly: process.env.NODE_ENV !== 'production',
+              transpileOnly: isDevelopment,
             },
           },
         ],
@@ -68,11 +69,11 @@ module.exports = {
       failOnError: true,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(ROOT_PATH),
+      template: path.resolve(`${ROOT_PATH}/src/index.html`),
     }),
   ],
   resolve: {
     extensions: ['.json', '.tsx', '.ts', '.js'],
-    modules: ['node_modules', ROOT_PATH],
+    modules: ['node_modules', ROOT_PATH, 'src'],
   },
 };
