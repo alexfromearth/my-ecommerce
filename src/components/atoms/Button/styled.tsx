@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components';
 
-import { ButtonColor } from './index';
-
 export enum ButtonSize {
   S,
   L,
   XL,
+}
+
+export enum ButtonColor {
+  DEFAULT,
+  PRIMARY,
+  SECONDARY,
 }
 
 interface IStyledButton {
