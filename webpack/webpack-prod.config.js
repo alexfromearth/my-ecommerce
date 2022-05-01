@@ -1,4 +1,6 @@
 const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const commonConfig = require('./common-config');
@@ -67,18 +69,11 @@ module.exports = merge(commonConfig, {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          ecma: 5,
-        },
-      }),
-    ],
   },
   output: {
     chunkFilename: '[name]-[chunkhash].js',
     filename: '[name]-[chunkhash].js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '../build'),
   },
   plugins: [
     new CleanWebpackPlugin(),
