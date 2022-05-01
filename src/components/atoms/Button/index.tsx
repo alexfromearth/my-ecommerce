@@ -2,18 +2,12 @@ import { useState } from 'react';
 
 import { isNonNullable } from '../../../helpers';
 import ButtonArrow, { ArrowDirection } from './ButtonArrow';
-import { ButtonSize, StyledButton } from './styled';
+import { ButtonColor, ButtonSize, StyledButton } from './styled';
 
 interface IProps {
   size?: ButtonSize;
   arrow?: ArrowDirection;
   color?: ButtonColor;
-}
-
-export enum ButtonColor {
-  DEFAULT,
-  PRIMARY,
-  SECONDARY,
 }
 
 const Button: React.FunctionComponent<IProps> = ({ children, size, arrow, color }) => {

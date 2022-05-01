@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { isNonNullable } from '../../../helpers';
+import { isNonNullable } from 'helpers';
+
 import SelectArrow from '../Icon/SelectArrow';
 import SelectOption, { IOption } from './SelectOption';
 import SelectTag from './SelectTag';

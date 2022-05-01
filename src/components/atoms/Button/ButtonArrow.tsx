@@ -1,4 +1,4 @@
-import { ButtonColor } from './index';
+import { ButtonColor } from './styled';
 
 export enum ArrowDirection {
   LEFT,
