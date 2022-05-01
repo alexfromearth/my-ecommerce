@@ -4,13 +4,17 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const commonConfig = require('./common-config');
-const { HMR } = require('./environment');
+const { HMR, DEV_SERVER_PORT } = require('./environment');
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const DEFAULT_PORT = 3000;
 
 module.exports = merge(commonConfig, {
   devtool: 'eval-source-map',
   mode: 'development',
+  devServer: {
+    hot: true,
+    port: DEV_SERVER_PORT ?? DEFAULT_PORT,
+  },
   module: {
     rules: [
       {
@@ -41,10 +45,10 @@ module.exports = merge(commonConfig, {
   },
   plugins: [
     HMR && new webpack.HotModuleReplacementPlugin(),
-    HMR && isDevelopment &&
+    HMR &&
       new ReactRefreshPlugin({
         overlay: {
-          sockIntegration: 'whm',
+          sockIntegration: 'wds',
         },
       }),
     new ForkTsCheckerNotifierPlugin({
@@ -53,7 +57,6 @@ module.exports = merge(commonConfig, {
       title: 'TypeScript',
     }),
     new webpack.WatchIgnorePlugin({ paths: [/node_modules/] }),
-    HMR && new webpack.NoEmitOnErrorsPlugin(),
   ].filter(Boolean),
   stats: {
     all: false,
