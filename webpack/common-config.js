@@ -11,7 +11,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   context: ROOT_PATH,
-  entry: { app: `${ROOT_PATH}/src/index.tsx` },
+  entry: { app: `${ROOT_PATH}/app/index.tsx` },
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -24,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.(m?js|tsx?)$/,
-        include: [/src/],
+        include: [/app/],
         use: [
           {
             loader: 'thread-loader',
@@ -69,11 +69,11 @@ module.exports = {
       failOnError: true,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(`${ROOT_PATH}/src/index.html`),
+      template: path.resolve(`${ROOT_PATH}/app/index.html`),
     }),
   ],
   resolve: {
     extensions: ['.json', '.tsx', '.ts', '.js'],
-    modules: ['node_modules', ROOT_PATH, 'src'],
+    modules: ['node_modules', ROOT_PATH, 'app'],
   },
 };

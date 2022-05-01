@@ -1,7 +1,7 @@
 {
   "name": "esales",
   "version": "1.0.0",
-  "main": "src/index.tsx",
+  "main": "app/index.tsx",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.13.14",
@@ -52,7 +52,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config ./webpack/webpack-dev.config.js",
     "build": "webpack --color --config webpack/webpack-prod.config.js",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx . --color",
     "lint-fix": "eslint --fix .",
     "format": "prettier --check --write \"**/*.{js,json,md,ts,tsx,yml}\"",
     "isready": "npm run format && npm run lint && npm run build"

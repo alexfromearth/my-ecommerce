@@ -12,7 +12,6 @@ module.exports = merge(commonConfig, {
   devtool: 'eval-source-map',
   mode: 'development',
   devServer: {
-    hot: true,
     port: DEV_SERVER_PORT ?? DEFAULT_PORT,
   },
   module: {
