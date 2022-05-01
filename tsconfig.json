@@ -26,7 +26,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "*": ["src/*"]
+      "*": ["app/*"]
     },
     "plugins": [
       {
@@ -48,5 +48,5 @@
     "strictPropertyInitialization": false,
     "target": "es5"
   },
-  "include": ["src/"]
+  "include": ["app/"]
 }
