@@ -129,6 +129,7 @@ module.exports = {
     ],
     'import/no-dynamic-require': 0,
     'import/no-extraneous-dependencies': [2],
+    'import/prefer-default-export': 0,
     'import/order': [
       'error',
       {
