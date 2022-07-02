@@ -4,20 +4,17 @@ import { isNonNullable } from 'helpers';
 
 import SelectArrow from '../Icon/SelectArrow';
 import SelectOption, { IOption } from './SelectOption';
-import SelectTag from './SelectTag';
 import { Placeholder, SelectArrowWrapper, SelectDropdown, StyledSelect } from './styled';
 
 interface IProps {
   options: IOption[];
   placeholder?: string;
-  multy?: boolean;
 }
 
-const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy = false }) => {
+const Select: React.FunctionComponent<IProps> = ({ options, placeholder }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState<IOption | IOption[] | null>(
-    multy ? [] : null
-  );
+  const [selectedOptions, setSelectedOptions] = useState<IOption | null>(null);
+
   const selectRef = useRef<HTMLDivElement>(null);
 
   const handleOutsideClick = (e: MouseEvent) => {
@@ -26,19 +23,6 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy =
     }
   };
 
-  const handleSelectedTagDelete = useCallback(
-    (option: IOption) => {
-      if (multy) {
-        setSelectedOptions((prevSelectedOptions: IOption[]) =>
-          prevSelectedOptions.filter(
-            ({ label, value }) => label !== option.label && value !== option.value
-          )
-        );
-      }
-    },
-    [selectedOptions, setSelectedOptions]
-  );
-
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
@@ -46,19 +30,11 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy =
 
   const handleOptionSelect = useCallback(
     (option: IOption) => {
-      if (multy && Array.isArray(selectedOptions)) {
-        const isAlreadyInOptions = selectedOptions.some(
-          ({ label, value }) => option.label === label && option.value === value
-        );
-        if (!isAlreadyInOptions) {
-          setSelectedOptions((prevSelectedOptions: IOption[]) => [...prevSelectedOptions, option]);
-        }
-      } else {
-        setSelectedOptions(option);
-      }
+      setSelectedOptions(option);
+
       setShowDropdown(false);
     },
-    [selectedOptions, setShowDropdown, setSelectedOptions, multy]
+    [selectedOptions, setShowDropdown, setSelectedOptions]
   );
 
   const toggleDropdownMenu = () => {
@@ -67,20 +43,11 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy =
 
   const renderSelectOptions = useCallback(() => {
     if (isNonNullable(selectedOptions)) {
-      if (Array.isArray(selectedOptions)) {
-        return selectedOptions.map(option => (
-          <SelectTag
-            key={`${option.value}-${option.label}`}
-            option={option}
-            handleDelete={handleSelectedTagDelete}
-          />
-        ));
-      }
       return selectedOptions.label;
     }
 
     return <Placeholder>{placeholder}</Placeholder>;
-  }, [selectedOptions, placeholder, handleSelectedTagDelete]);
+  }, [selectedOptions, placeholder]);
 
   return (
     <div ref={selectRef}>
@@ -104,4 +71,5 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder, multy =
     </div>
   );
 };
+
 export default Select;
