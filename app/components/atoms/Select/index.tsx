@@ -9,11 +9,12 @@ import { Placeholder, SelectArrowWrapper, SelectDropdown, StyledSelect } from '.
 interface IProps {
   options: IOption[];
   placeholder?: string;
+  value: IOption | null;
+  onChange(option: IOption): void;
 }
 
-const Select: React.FunctionComponent<IProps> = ({ options, placeholder }) => {
+const Select: React.FunctionComponent<IProps> = ({ options, placeholder, value, onChange }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState<IOption | null>(null);
 
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -28,26 +29,23 @@ const Select: React.FunctionComponent<IProps> = ({ options, placeholder }) => {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  const handleOptionSelect = useCallback(
-    (option: IOption) => {
-      setSelectedOptions(option);
+  const handleOptionSelect = (option: IOption) => {
+    onChange(option);
 
-      setShowDropdown(false);
-    },
-    [selectedOptions, setShowDropdown, setSelectedOptions]
-  );
+    setShowDropdown(false);
+  };
 
   const toggleDropdownMenu = () => {
     setShowDropdown(prev => !prev);
   };
 
   const renderSelectOptions = useCallback(() => {
-    if (isNonNullable(selectedOptions)) {
-      return selectedOptions.label;
+    if (isNonNullable(value)) {
+      return value.label;
     }
 
     return <Placeholder>{placeholder}</Placeholder>;
-  }, [selectedOptions, placeholder]);
+  }, [value, placeholder]);
 
   return (
     <div ref={selectRef}>

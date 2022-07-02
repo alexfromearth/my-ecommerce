@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useState } from 'react';
 
+import { IOption } from './SelectOption';
 import Select from './index';
 
 export default {
@@ -19,7 +21,15 @@ export default {
   ],
 } as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = args => <Select {...args} />;
+const Template: ComponentStory<typeof Select> = args => {
+  const [value, setValue] = useState<IOption | null>(null);
+
+  const handleChange = (option: IOption) => {
+    setValue(option);
+  };
+
+  return <Select {...args} value={value} onChange={handleChange} />;
+};
 
 export const SelectStory = Template.bind({});
 SelectStory.args = {
