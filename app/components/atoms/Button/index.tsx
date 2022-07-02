@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import { isNonNullable } from '../../../helpers';
+import { isNonNullable } from 'helpers';
+
 import ButtonArrow, { ArrowDirection } from './ButtonArrow';
 import { ButtonColor, ButtonSize, StyledButton } from './styled';
 

@@ -31,8 +31,9 @@ module.exports = {
       node: {
         extensions: ['.js', '.ts', '.tsx'],
         moduleDirectory: ['node_modules', __dirname, 'src'],
-      },
-    },
+        paths: ['app']
+      }
+    }
   },
   rules: {
     '@typescript-eslint/await-thenable': 0,
