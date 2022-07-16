@@ -42,6 +42,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check previous build existence
         id: check_build_existence
         uses: andstor/file-existence-action@v1
@@ -60,6 +63,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check previous storybook build existence
         id: check_storybook_build_existence
         uses: andstor/file-existence-action@v1
