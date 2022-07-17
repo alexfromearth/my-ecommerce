@@ -6,7 +6,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Build:
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -37,9 +38,10 @@ jobs:
       - name: Build
         run: yarn build
 
-  ESLint:
+  linter:
+    name: ESLint
     runs-on: ubuntu-latest
-    needs: [Build]
+    needs: [build]
 
     steps:
       - name: Checkout
@@ -59,9 +61,10 @@ jobs:
       - name: Check violation of linter rules
         run: yarn lint
 
-  Prettier:
+  prettier:
+    name: Prettier
     runs-on: ubuntu-latest
-    needs: [Build]
+    needs: [build]
 
     steps:
       - name: Checkout
@@ -81,9 +84,10 @@ jobs:
       - name: Check violation of prettier rules
         run: yarn prettier
 
-  Storybook:
+  storybook:
+    name: Storybook Build
     runs-on: ubuntu-latest
-    needs: [ESLint, Prettier]
+    needs: [linter, prettier]
 
     steps:
       - name: Checkout
