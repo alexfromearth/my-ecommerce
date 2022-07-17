@@ -61,8 +61,8 @@
     "build": "webpack --color --config webpack/webpack-prod.config.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx . --color",
     "lint-fix": "eslint --fix .",
-    "format": "prettier --check --write \"**/*.{js,json,md,ts,tsx,yml}\"",
-    "isready": "npm run format && npm run lint && npm run build",
+    "prettier": "prettier --check \"**/*.{js,json,md,ts,tsx,yml}\"",
+    "prettier-fix": "prettier --check --write \"**/*.{js,json,md,ts,tsx,yml}\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
