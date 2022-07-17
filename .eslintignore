@@ -1,5 +1,6 @@
 // .eslintignore
 build/*
+storybook-static/*
 public/*
 src/react-app-env.d.ts
 node_modules
