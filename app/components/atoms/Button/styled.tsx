@@ -19,16 +19,6 @@ interface IStyledButton {
 
 const getButtonColor = (color: ButtonColor) => {
   switch (color) {
-    case ButtonColor.DEFAULT:
-      return css`
-        border: 2px solid #92c064;
-        background-color: #ffffff;
-
-        &:hover {
-          background-color: #6a983c;
-          color: #ffffff;
-        }
-      `;
     case ButtonColor.PRIMARY:
       return css`
         background-color: #6a983c;
@@ -40,15 +30,23 @@ const getButtonColor = (color: ButtonColor) => {
         border: none;
         background-color: #f5f5f5;
       `;
+
+    case ButtonColor.DEFAULT:
+    default:
+      return css`
+        border: 2px solid #92c064;
+        background-color: #ffffff;
+
+        &:hover {
+          background-color: #6a983c;
+          color: #ffffff;
+        }
+      `;
   }
 };
 
 const getButtonPadding = (size: ButtonSize) => {
   switch (size) {
-    case ButtonSize.S:
-      return css`
-        padding: 8px;
-      `;
     case ButtonSize.L:
       return css`
         padding: 12px 16px;
@@ -56,6 +54,11 @@ const getButtonPadding = (size: ButtonSize) => {
     case ButtonSize.XL:
       return css`
         padding: 18px 48px;
+      `;
+    case ButtonSize.S:
+    default:
+      return css`
+        padding: 8px;
       `;
   }
 };
